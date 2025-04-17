@@ -15,12 +15,12 @@ import pickle
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 
-WATCH_FOLDER = "D:/Pasta Drive/Raíssa/SOJA V2 20032025/SOJA-20-03/AMOSTRAS/Unicos"
-BACKGROUND_FOLDER1 = "D:/Pasta Drive/Raíssa/SOJA V2 20032025/SOJA-20-03/BACKGROUND/background1"
-BACKGROUND_FOLDER2 = "D:/Pasta Drive/Raíssa/SOJA V2 20032025/SOJA-20-03/BACKGROUND/background1"
+WATCH_FOLDER = "/home/openscience/Pictures"
+BACKGROUND_FOLDER1 = "/home/openscience/Pictures/background/soja_2025_04_10_bckgrd1"
+BACKGROUND_FOLDER2 = "/home/openscience/Pictures/background/soja_2025_04_10_bckgrd2"
 
-MODEL_PATH = "D:/Pasta Drive/Raíssa/SOJA V2 20032025/SOJA-20-03/xgb_model.pkl"
-ENCODER_PATH = "D:/Pasta Drive/Raíssa/SOJA V2 20032025/SOJA-20-03/xgb_encoder.pkl"
+MODEL_PATH = "/home/openscience/Desktop/interfacerpb/xgb_model.pkl"
+ENCODER_PATH = "/home/openscience/Desktop/interfacerpb/xgb_encoder.pkl"
 
 def carregar_imagem(path, log):
     try:
@@ -36,7 +36,7 @@ def carregar_imagem(path, log):
         return None
 
 def load_images_to_cube(folder_path, log):
-    files = sorted([f for f in os.listdir(folder_path) if f.lower().endswith(('.tif', '.tiff', '.bmp', '.png', '.jpeg'))])
+    files = sorted([f for f in os.listdir(folder_path) if f.lower().endswith(('.tif', '.tiff', '.bmp', '.png', '.jpeg', '.jpg'))])
     images = []
     for file in files:
         img_path = os.path.join(folder_path, file)
@@ -51,7 +51,7 @@ def load_images_to_cube(folder_path, log):
 def load_images_from_subfolders(root_folder, log):
     cubes = {}
     folder_name = os.path.basename(root_folder.rstrip("///"))
-    direct_files = [f for f in os.listdir(root_folder) if f.lower().endswith(('.tif', '.tiff', '.bmp', '.png', '.jpeg'))]
+    direct_files = [f for f in os.listdir(root_folder) if f.lower().endswith(('.tif', '.tiff', '.bmp', '.png', '.jpeg', '.jpg'))]
     if direct_files:
         log(f"🔍 Encontrado {len(direct_files)} arquivos diretamente em {root_folder}")
         images = []
